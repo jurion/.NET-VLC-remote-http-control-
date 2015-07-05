@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="VlcRemotePhone.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VlcRemotePhone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Panneau Titre -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="VLC REMOTE CONTROL" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+        </StackPanel>
+
+        <!--TODO: le contenu doit être placé dans la grille suivante-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <StackPanel>
+                <TextBlock Visibility="{Binding IsConnected, Converter={StaticResource NegatiofBooleanToVisibilityConverter}}">
+                    Not connected. Check settings.
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            Connected to
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Margin="10 0 0 0" Text="{Binding Path=VlcVersion,Mode=OneWay}">
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            Now playing
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Margin="10 0 0 0" Text="{Binding Path=CurrentlyPlaying,Mode=OneWay}">
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Settings" Icon="Setting" Click="AppBarButton_Click_1"/>
+            <AppBarButton Label="Full Screen" Icon="FullScreen" Click="AppBarButton_Click" x:Name="fullScreenButton" Visibility="{Binding IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+</Page>
+    

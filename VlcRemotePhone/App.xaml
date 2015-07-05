@@ -1,0 +1,12 @@
+﻿<Application
+    x:Class="VlcRemotePhone.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VlcRemotePhone"
+    xmlns:converters="using:VlcRemotePhone.Converters">
+    <Application.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:NegatiofBooleanToVisibilityConverter x:Key="NegatiofBooleanToVisibilityConverter" />
+    </Application.Resources>
+
+</Application>
