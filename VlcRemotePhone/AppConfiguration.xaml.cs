@@ -39,7 +39,7 @@ namespace VlcRemotePhone
             if (isOk)
             {
                 this.connectionResult.Text = "Connection TEST: OK!";
-               /* await com.PlayFile(new VlcLib.Media.VlcMediaItem()
+             /*   await com.PlayFile(new VlcLib.Media.VlcMediaItem()
                 {
                     FileName = "https://www.youtube.com/watch?v=OCy5461BtTg?vq=hd1080"
                 });*/
