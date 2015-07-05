@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlcLib", "VlcLib\VlcLib.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlcRemotePhone", "VlcRemotePhone\VlcRemotePhone.csproj", "{6CCE3743-0B45-46A1-9863-CB92C47C1B16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "All", "All", "{CC9DBFD8-A5F1-497F-8BB0-41CD50A20EC4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
