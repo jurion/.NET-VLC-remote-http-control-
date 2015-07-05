@@ -16,5 +16,10 @@ The library also supports YouTube play back.
         });
     }
 
-
+<h3>Projects</h3>
+<ul>
+    <li><b>VlcLib</b> : Portable class library. Targeting Windows 8.1, Windows phone 8.1 and .Net 4.5. Includes everything for communication with VLC using HTTP protocol.</li>
+    <li><b>VLCRemoteControl</b> : Windows 8.1 application. You need to changes IP address  and password manually in the code</li>
+    <li><b>VlcRemotePhone</b> : Windows phone 8.1/10 application (Will not work on windows phone 8). There is a configuration page, but not a lot of other design.  </li>
+</ul>
 
