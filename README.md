@@ -13,7 +13,7 @@ There is no configuration page for Windows 8.1 application.
 
 <h4>VlcRemotePhone</h4>
 
-Still missing controls, but YouTuve search is already working.
+Still missing controls (They are functional in the Lib, but need some design work for App), but YouTube search is already working.
 You need to use your own API key for testing. (You can change it in code behind for App.xaml)
 
 <h4>VlcLib</h4>
