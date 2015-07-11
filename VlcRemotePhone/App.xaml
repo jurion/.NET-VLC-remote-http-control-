@@ -5,8 +5,13 @@
     xmlns:local="using:VlcRemotePhone"
     xmlns:converters="using:VlcRemotePhone.Converters">
     <Application.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converters:NegatiofBooleanToVisibilityConverter x:Key="NegatiofBooleanToVisibilityConverter" />
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assets/Templates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:NegatiofBooleanToVisibilityConverter x:Key="NegatiofBooleanToVisibilityConverter" />
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>

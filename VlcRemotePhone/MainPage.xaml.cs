@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Google.Apis.Services;
+using Google.Apis.YouTube.v3;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,11 +33,40 @@ namespace VlcRemotePhone
             this.InitializeComponent();
             this.DataContext = App.ViewModel;
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            //this.testRun();
             this.CheckConfig();
+            this.youtubeResultsList.ItemsSource = App.YoutubeSearchResults;
         }
 
+        private async void SearchTube(string search)
+        {
+            await ProgressBarHelper.ShowProgress("Searching YouTube");
+            var searchListRequest = App.YoutubeService.Search.List("snippet");
+            searchListRequest.Q = search;
+            searchListRequest.MaxResults = 50;
+            var searchListResponse = await searchListRequest.ExecuteAsync();
 
+            // Add each result to the appropriate list, and then display the lists of
+            // matching videos, channels, and playlists.
+            App.YoutubeSearchResults.Clear();
+            foreach (var searchResult in searchListResponse.Items)
+            {
+                switch (searchResult.Id.Kind)
+                {
+                    case "youtube#video":
+                        App.YoutubeSearchResults.Add(new YouTubeMedia()
+                        {
+                            Description = searchResult.Snippet.Description,
+                            Name = searchResult.Snippet.Title,
+                            ThumbUrl = searchResult.Snippet.Thumbnails.Default.Url,
+                            VideoId = searchResult.Id.VideoId,
+                            PostedBy = searchResult.Snippet.ChannelTitle
+                        });
+                        break;
+
+                }
+            }
+            await ProgressBarHelper.HideProgress();
+        }
         private async void CheckConfig()
         {
             if (!App.VlcSettings.IsLoadedFromStorage)
@@ -87,6 +118,37 @@ namespace VlcRemotePhone
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             App.ViewModel.ToggleFullScreen();
+        }
+
+        private async void youtubeResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                var elem = e.AddedItems[0] as YouTubeMedia;
+                await ProgressBarHelper.ShowProgress("Luncing " + elem.Name);
+                App.ViewModel.PlayItem(new MediaElemntViewModel()
+                {
+                    FileUri = elem.GetFullurl()
+                });
+                await ProgressBarHelper.HideProgress();
+            }
+        }
+
+        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.YoutubeSearchText.Text))
+            {
+                this.SearchTube(this.YoutubeSearchText.Text.Trim());
+            }
+        }
+
+        private void YoutubeSearchText_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                this.Focus(FocusState.Programmatic);
+                this.AppBarButton_Click_2(null, null);
+            }
         }
     }
 }

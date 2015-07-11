@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Google.Apis.Services;
+using Google.Apis.YouTube.v3;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -48,6 +51,20 @@ namespace VlcRemotePhone
             }
         }
 
+        private static YouTubeService youtubeService = new YouTubeService(new BaseClientService.Initializer()
+        {
+            ApiKey = "[Your YouTubeApi Key]",
+            ApplicationName = "Vlc Remote Control"
+        });
+
+        public static YouTubeService YoutubeService
+        {
+            get
+            {
+                return youtubeService;
+            }
+        }
+
         public static VlcConnectSettings VlcSettings
         {
             get
@@ -60,6 +77,8 @@ namespace VlcRemotePhone
                 vlcSettings = value;
             }
         }
+
+        public static ObservableCollection<YouTubeMedia> YoutubeSearchResults = new ObservableCollection<YouTubeMedia>();
 
         /// <summary>
         /// Initialise l'objet d'application de singleton.  Il s'agit de la première ligne du code créé

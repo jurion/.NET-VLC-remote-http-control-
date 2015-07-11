@@ -7,27 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid x:Name="LayoutRoot">
-
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Panneau Titre -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="VLC REMOTE CONTROL" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-        </StackPanel>
-
-        <!--TODO: le contenu doit être placé dans la grille suivante-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Pivot x:Uid="Pivot" Title="VLC REMOTE CONTROL" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+        <PivotItem x:Uid="PivotControl" Header="Controls" CommonNavigationTransitionInfo.IsStaggerElement="True">
             <StackPanel>
                 <TextBlock Visibility="{Binding IsConnected, Converter={StaticResource NegatiofBooleanToVisibilityConverter}}">
                     Not connected. Check settings.
@@ -51,9 +41,28 @@
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
-        </Grid>
-    </Grid>
-
+        </PivotItem>
+        <PivotItem x:Uid="PivotYoutube" Header="Youtube" CommonNavigationTransitionInfo.IsStaggerElement="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" PlaceholderText="Search youtube" HorizontalAlignment="Stretch" x:Name="YoutubeSearchText" IsSpellCheckEnabled="True" KeyDown="YoutubeSearchText_KeyDown" />
+                    <AppBarButton Icon="Find" Grid.Column="1" Click="AppBarButton_Click_2" />
+                </Grid>
+                <ScrollViewer Grid.Row="1">
+                    <ListView x:Name="youtubeResultsList" ItemTemplate="{StaticResource YouTubeSearchResultTemplate}" ScrollViewer.VerticalScrollMode="Enabled" SelectionChanged="youtubeResultsList_SelectionChanged">
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </PivotItem>
+    </Pivot>
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Label="Settings" Icon="Setting" Click="AppBarButton_Click_1"/>

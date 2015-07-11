@@ -50,6 +50,7 @@
     <Compile Include="ViewModels\BaseNotification.cs" />
     <Compile Include="ViewModels\MediaElemntViewModel.cs" />
     <Compile Include="ViewModels\PlayedViewModel.cs" />
+    <Compile Include="ViewModels\YouTubeMedia.cs" />
     <Compile Include="VlcWebControler.cs" />
   </ItemGroup>
   <ItemGroup>

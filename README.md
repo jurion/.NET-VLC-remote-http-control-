@@ -3,6 +3,20 @@ The library and a demo project for remote HTTP VLC control for windows 8.1, wind
 
 There is no configuration page for Windows 8.1 application.
 
+
+<h3>Projects</h3>
+<ul>
+    <li><b>VlcLib</b> : Portable class library. Targeting Windows 8.1, Windows phone 8.1 and .Net 4.5. Includes everything for communication with VLC using HTTP protocol.</li>
+    <li><b>VLCRemoteControl</b> : Windows 8.1 application. You need to changes IP address  and password manually in the code</li>
+    <li><b>VlcRemotePhone</b> : Windows phone 8.1/10 application (Will not work on windows phone 8.0). There is a configuration page, but not a lot of other design.  </li>
+</ul>
+
+<h4>VlcRemotePhone</h4>
+
+Still missing controls, but YouTuve search is already working.
+You need to use your own API key for testing. (You can change it in code behind for App.xaml)
+
+<h4>VlcLib</h4>
 The library also supports YouTube play back.
 
     var com = new VlcWebControler(this.GetUrl(), this.password.Password);
@@ -16,10 +30,4 @@ The library also supports YouTube play back.
         });
     }
 
-<h3>Projects</h3>
-<ul>
-    <li><b>VlcLib</b> : Portable class library. Targeting Windows 8.1, Windows phone 8.1 and .Net 4.5. Includes everything for communication with VLC using HTTP protocol.</li>
-    <li><b>VLCRemoteControl</b> : Windows 8.1 application. You need to changes IP address  and password manually in the code</li>
-    <li><b>VlcRemotePhone</b> : Windows phone 8.1/10 application (Will not work on windows phone 8.0). There is a configuration page, but not a lot of other design.  </li>
-</ul>
 

@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VlcRemotePhone">
+
+    <DataTemplate x:Key="YouTubeSearchResultTemplate">
+        <StackPanel Orientation="Horizontal" Width="500" Height="130">
+            <Border Height="110" Width="110" Margin="10,10,0,10">
+                <Image Source="{Binding ThumbUrl}" Stretch="UniformToFill"/>
+            </Border>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
+                <TextBlock Text="{Binding Name}" 
+                       Margin="10,0,0,0" Width="350" Height="20" TextTrimming="WordEllipsis" />
+                <TextBlock Text="{Binding PostedBy}" 
+                       Margin="10,2,0,0" Width="350" Height="14" TextTrimming="WordEllipsis" 
+                       HorizontalAlignment="Left" FontSize="9" Opacity="0.49"/>
+                <TextBlock Text="{Binding Description}" 
+                       Margin="10,2,0,0" Width="350" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>
